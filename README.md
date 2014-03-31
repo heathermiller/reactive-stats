@@ -15,7 +15,7 @@ The following questions (with their available choices) were on the survey:
 - **What's your age group?**
   - Possible choices: 10-17, 18-24, 25-34, 35-44, 45-54, 55-64, 65+
 - **What's your gender?**
-  - Possible choices: "Male", "Female", "Would prefer not to say"
+  - Possible choices: Male, Female, Would prefer not to say
 - **What country do you live in?**
 - **What's your highest degree?**
   - Possible choices: No High School (or equivalent), Some High School (or equivalent), High School (or equivalent), Some College (or equivalent), Bachelor's Degree (or equivalent), Master's Degree (or equivalent), Doctorate Degree (or equivalent), Other (fill in)
