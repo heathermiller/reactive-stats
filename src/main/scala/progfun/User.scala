@@ -4,25 +4,51 @@ package progfun
  */
 case class User(
   age: String,
+  gender: String,
   country: String,
   degree: String,
   field: String,
   finishedCourse: Boolean,
   yearsProg: String,
-  timeSpent: String,
-  difficulty: Int,
-  difficultyHW: Int,
   worthIt: Int,
-  followupCourse: Int,
   whatInterestedYou: String,
   whereApply: String,
   prefEditor: String,
   courseEditor: String,
-  javaExp: String,
-  cExp: String,
-  pythonExp: String,
-  dotNetExp: String,
-  jsExp: String,
-  funcExp: String,
-  lispExp: String
+  odersky: Odersky,
+  meijer: Meijer,
+  kuhn: Kuhn,
+  programmingExp: Exp
+) {
+  val timeSpent = ""
+  val difficulty = Math.round((odersky.difficulty + meijer.difficulty + kuhn.difficulty)/3).toInt
+  val difficultyHW = Math.round((odersky.difficultyHW + meijer.difficultyHW + kuhn.difficultyHW)/3).toInt
+}
+
+case class Odersky(
+  timeSpent: String,
+  difficulty: Int,
+  difficultyHW: Int
+)
+
+case class Meijer(
+  timeSpent: String,
+  difficulty: Int,
+  difficultyHW: Int
+)
+
+case class Kuhn(
+  timeSpent: String,
+  difficulty: Int,
+  difficultyHW: Int
+)
+
+case class Exp(
+  java: String,
+  c: String,
+  python: String,
+  dotNet: String,
+  js: String,
+  func: String,
+  lisp: String
 )

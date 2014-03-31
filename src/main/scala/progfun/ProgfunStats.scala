@@ -65,9 +65,9 @@ object ExperienceDifficultyBarGraph extends GroupedBarGraphFactory with App {
   def getExperts(selector: User => String) =
     users.filter(user => selector(user) == "I'm an expert" || selector(user) == "I'm fluent")
 
-  val cers    = getExperts(_.cExp)
-  val javaers = getExperts(_.javaExp)
-  val fpers   = getExperts(_.funcExp)
+  val cers    = getExperts(_.programmingExp.c)
+  val javaers = getExperts(_.programmingExp.java)
+  val fpers   = getExperts(_.programmingExp.func)
 
   def makeDifficultyMap(usrs: List[User]): Map[Int, Long] =
     usrs.groupBy(user => user.difficultyHW)
@@ -413,42 +413,6 @@ object EditorGroupedBarGraph extends GroupedBarGraphFactory with App {
   writeHtml()
 }
 
-/** object representing a *simple* bar graph of
- *  students' interest in a follow-up course
- */
-object FollowupCourseBarGraph extends SimpleBarGraphFactory with App {
-  import CourseraData.followupCourse
-
-  /* file name to output to */
-  val name = "followup-course.html"
-
-  /* width and height of final plot. Overrides default of 960 x 480 */
-  override val width = 250
-  override val height = 250
-  override val maxy = 70
-  override val color = "#5E4175"
-
-  /* the label on the y axis */
-  val label = "Percentage"
-
- /* this represents the data that goes into your bar graph
-  * where the String is the label on the x-axis, and the
-  * Int is the value for each bar */
-  def data: List[(String, Int)] = {
-    val counts =
-      getFreqs(followupCourse)
-      .sortBy(_._1)
-      .map { case (name, value) =>
-            (name.toString, (value.toDouble / followupCourse.length * 100).round.toInt)
-      }
-    val correctedLabels: List[(String, Int)] =
-      List(("1 Not Interested", counts(0)._2)) ++ counts.drop(1).take(3) ++ List(("5 Absolutely!",counts(4)._2))
-    correctedLabels
-  }
-
-  writeHtml()
-}
-
 /** object representing a *simple* bar graph which
  *  represents how "worth it" the course was for students
  */
@@ -500,7 +464,6 @@ object ProgfunStats extends App {
     WhereApplyPieChart,
     WhatInterestedYouPieChart,
     EditorGroupedBarGraph,
-    FollowupCourseBarGraph,
     WorthItBarGraph
     ).foreach { graph =>
       graph.main(Array())
