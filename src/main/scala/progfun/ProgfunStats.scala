@@ -586,6 +586,19 @@ object InstructorTimeSpentBarGraph extends GroupedBarGraphFactory with App {
   writeHtml()
 }
 
+/** object representing a pie chart which represents the
+ *  ratio of guys to girls, as reported in survey
+ */
+object GenderPieChart extends PieChartFactory with App {
+  /* file name to output to */
+  val name = "gender.html"
+
+ /* this represents the data that goes into your pie chart
+  * where the String is the label, and the Int is the
+  * value for each slice of the chart */
+  def data: List[(String, Int)] = getFreqs(CourseraData.genders)
+  writeHtml()
+}
 
 /** Shortcut for generating all graphs.
  *  Add any new graph to this list, and in sbt,
@@ -606,7 +619,8 @@ object ProgfunStats extends App {
     WorthItBarGraph,
     InstructorDifficultyBarGraph,
     InstructorHWDifficultyBarGraph,
-    InstructorTimeSpentBarGraph
+    InstructorTimeSpentBarGraph,
+    GenderPieChart
     ).foreach { graph =>
       graph.main(Array())
       println("generated " + graph.name)
