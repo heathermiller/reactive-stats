@@ -1,19 +1,21 @@
-# Progfun-stats
+# Reactive-stats
 
-This repository contains the data from the **Fall 2013** "progfun" survey, and the source code for many of the plots seen in the [_Functional Programming Principles in Scala: Impressions and Statistics_](http://docs.scala-lang.org/news/functional-programming-principles-in-scala-impressions-and-statistics.html) (Fall 2012) article on scala-lang.org. (Of course, adapted to the statistics gathered from the Spring 2013 iteration of the course).
+This repository contains the data from the **Fall 2013** "reactive" survey, and the source code for many of the plots similar to those seen in the in the [_Functional Programming Principles in Scala: Impressions and Statistics_](http://docs.scala-lang.org/news/functional-programming-principles-in-scala-impressions-and-statistics.html) (Fall 2012) article on scala-lang.org. (Of course, adapted to the statistics gathered from the Fall 2013 iteration of the _Principles of Reactive Programming_ course).
 
 We encourage you to checkout the repository, to generate the plots shown in the article yourself, and to explore the data further. Given sufficient interest, we plan on writing a follow-up article, and we'd love to hear from you! If you've found anything interesting in the data, or otherwise have a cool/interesting visualization to share, please don't hesitate to let us know! We'll include as many as we can in our follow-up article.
 
-Pull requests are also welcome. Please either post in the comments [in the article](http://docs.scala-lang.org/news/functional-programming-principles-in-scala-impressions-and-statistics.html) or contact [Heather](http://people.epfl.ch/heather.miller) if need be.
+Pull requests are also welcome.
 
 ## The Survey
 
-The survey was emailed to the ~36,000 students enrolled in the **Fall 2013** [_Functional Programming Principles in Scala_](https://www.coursera.org/course/progfun) MOOC on [Coursera](http://coursera.org). Out of those students, 3,786 responded.
+The survey was emailed to the ~40,000 students enrolled in the **Fall 2013** [_Principles of Reactive Programming_](https://www.coursera.org/course/reactive) MOOC on [Coursera](http://coursera.org). Out of those students, 4,400 responded.
 
 The following questions (with their available choices) were on the survey:
 
 - **What's your age group?**
   - Possible choices: 10-17, 18-24, 25-34, 35-44, 45-54, 55-64, 65+
+- **What's your gender?**
+  - Possible choices: "Male", "Female", "Would prefer not to say"
 - **What country do you live in?**
 - **What's your highest degree?**
   - Possible choices: No High School (or equivalent), Some High School (or equivalent), High School (or equivalent), Some College (or equivalent), Bachelor's Degree (or equivalent), Master's Degree (or equivalent), Doctorate Degree (or equivalent), Other (fill in)
@@ -23,17 +25,15 @@ The following questions (with their available choices) were on the survey:
   - Possible choices: 0-1 years, 1-2 years, 3-5 years, 5-7 years, 7-10 years, 10-15 years, 15-20 years, 20+ years
 - **Did you finish the course?**
   - Possible choices: Yes, No
-- **How many hours, on average, did you spend per week on the course?**
-  - Possible choices: 1-2 hours, 2-4 hours, 4-6 hours, 6-8 hours, 8-10 hours, 10-12 hours, 12+ hours
-- **How difficult did you find the course overall?**
+- **How many hours, on average, did you spend per week on the course? (x3, asked once per instructor)**
+  - Possible choices: 1-4 hours, 4-6 hours, 6-8 hours, 8-10 hours, 10+ hours
+- **How difficult did you find the course overall? (x3, asked once per instructor)**
   - Possible choices: 1 - Too Easy, 2, 3, 4, 5 - Too Hard
-- **How difficult did you find the homework assignments?**
+- **How difficult did you find the homework assignments? (x3, asked once per instructor)**
   - Possible choices: 1 - Too Easy, 2, 3, 4, 5 - Too Hard
 - **Do you feel the course was worth the time you invested in it?**
   - Possible choices: 1 - Disagree Completely, 2, 3, 4, 5 - Agree Completely
-- **Would you take a follow-up functional programming in Scala course, if it were offered?**
-  - Possible choices: 1 - Not Interested, 2, 3, 4, 5 - Absolutely!
-- **What interested you in the Functional Programming Principles in Scala course?**
+- **What interested you in the Principles of Reactive Programming course?**
   - Possible choices: Personal Interest/Curiosity, University Studies, Helps With Profession
 - **Where do you plan to apply what you've learned in this course?**
   - Possible choices: Personal projects, Individual project at work, Team project at work, University projects, No application plans, attended for general interest
