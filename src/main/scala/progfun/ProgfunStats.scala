@@ -448,6 +448,99 @@ object WorthItBarGraph extends SimpleBarGraphFactory with App {
   writeHtml()
 }
 
+/** object representing a *grouped* bar graph of students'
+ *  reported difficulty relative to instructor
+ */
+object InstructorDifficultyBarGraph extends GroupedBarGraphFactory with App {
+  import CourseraData.users
+
+  /* file name to output to */
+  val name = "instructor-vs-difficulty.html"
+
+  /* width and height of final plot. Overrides default of 960 x 480 */
+  override val width = 450
+  override val height = 240
+
+  /* the captions represent the legend (the colors for each bar).
+   for the moment, it must begin with a string called "Key". this will be removed shortly */
+  val captions = List("Key","1","2","3","4","5")
+
+  /* label for the y-axis */
+  def label = "Percentage"
+
+  val oderskyDifficulty: Map[Int, Long] =
+    users.groupBy(user => user.odersky.difficulty)
+        .map(kv => (kv._1, (kv._2.length.toDouble/users.length*100).round))
+
+  val meijerDifficulty: Map[Int, Long] =
+    users.groupBy(user => user.meijer.difficulty)
+        .map(kv => (kv._1, (kv._2.length.toDouble/users.length*100).round))
+
+  val kuhnDifficulty: Map[Int, Long] =
+    users.groupBy(user => user.kuhn.difficulty)
+        .map(kv => (kv._1, (kv._2.length.toDouble/users.length*100).round))
+
+ /* this effectively returns a List[(String, Int)]
+  * it represents the data that goes into your bar graph
+  * where the String is the label on the x-axis, and the
+  * Int is the value for each bar */
+  def data =
+    List(
+      ("Odersky", oderskyDifficulty.toList.sorted.map(_._2)),
+      ("Meijer",  meijerDifficulty.toList.sorted.map(_._2)),
+      ("Kuhn",    kuhnDifficulty.toList.sorted.map(_._2))
+    )
+
+  writeHtml()
+}
+
+/** object representing a *grouped* bar graph of students'
+ *  reported difficulty relative to instructor's HW
+ */
+object InstructorHWDifficultyBarGraph extends GroupedBarGraphFactory with App {
+  import CourseraData.users
+
+  /* file name to output to */
+  val name = "instructor-hw-vs-difficulty.html"
+
+  /* width and height of final plot. Overrides default of 960 x 480 */
+  override val width = 450
+  override val height = 240
+
+  /* the captions represent the legend (the colors for each bar).
+   for the moment, it must begin with a string called "Key". this will be removed shortly */
+  val captions = List("Key","1","2","3","4","5")
+
+  /* label for the y-axis */
+  def label = "Percentage"
+
+  val oderskyDifficulty: Map[Int, Long] =
+    users.groupBy(user => user.odersky.difficultyHW)
+        .map(kv => (kv._1, (kv._2.length.toDouble/users.length*100).round))
+
+  val meijerDifficulty: Map[Int, Long] =
+    users.groupBy(user => user.meijer.difficultyHW)
+        .map(kv => (kv._1, (kv._2.length.toDouble/users.length*100).round))
+
+  val kuhnDifficulty: Map[Int, Long] =
+    users.groupBy(user => user.kuhn.difficultyHW)
+        .map(kv => (kv._1, (kv._2.length.toDouble/users.length*100).round))
+
+ /* this effectively returns a List[(String, Int)]
+  * it represents the data that goes into your bar graph
+  * where the String is the label on the x-axis, and the
+  * Int is the value for each bar */
+  def data =
+    List(
+      ("Odersky", oderskyDifficulty.toList.sorted.map(_._2)),
+      ("Meijer",  meijerDifficulty.toList.sorted.map(_._2)),
+      ("Kuhn",    kuhnDifficulty.toList.sorted.map(_._2))
+    )
+
+  writeHtml()
+}
+
+
 /** Shortcut for generating all graphs.
  *  Add any new graph to this list, and in sbt,
  *  run progfun.ProgfunStats to generate all graphs
@@ -464,7 +557,9 @@ object ProgfunStats extends App {
     WhereApplyPieChart,
     WhatInterestedYouPieChart,
     EditorGroupedBarGraph,
-    WorthItBarGraph
+    WorthItBarGraph,
+    InstructorDifficultyBarGraph,
+    InstructorHWDifficultyBarGraph
     ).foreach { graph =>
       graph.main(Array())
       println("generated " + graph.name)
