@@ -514,15 +514,15 @@ object InstructorHWDifficultyBarGraph extends GroupedBarGraphFactory with App {
   /* label for the y-axis */
   def label = "Percentage"
 
-  val oderskyDifficulty: Map[Int, Long] =
+  val oderskyDifficultyHW: Map[Int, Long] =
     users.groupBy(user => user.odersky.difficultyHW)
         .map(kv => (kv._1, (kv._2.length.toDouble/users.length*100).round))
 
-  val meijerDifficulty: Map[Int, Long] =
+  val meijerDifficultyHW: Map[Int, Long] =
     users.groupBy(user => user.meijer.difficultyHW)
         .map(kv => (kv._1, (kv._2.length.toDouble/users.length*100).round))
 
-  val kuhnDifficulty: Map[Int, Long] =
+  val kuhnDifficultyHW: Map[Int, Long] =
     users.groupBy(user => user.kuhn.difficultyHW)
         .map(kv => (kv._1, (kv._2.length.toDouble/users.length*100).round))
 
@@ -532,9 +532,55 @@ object InstructorHWDifficultyBarGraph extends GroupedBarGraphFactory with App {
   * Int is the value for each bar */
   def data =
     List(
-      ("Odersky", oderskyDifficulty.toList.sorted.map(_._2)),
-      ("Meijer",  meijerDifficulty.toList.sorted.map(_._2)),
-      ("Kuhn",    kuhnDifficulty.toList.sorted.map(_._2))
+      ("Odersky", oderskyDifficultyHW.toList.sorted.map(_._2)),
+      ("Meijer",  meijerDifficultyHW.toList.sorted.map(_._2)),
+      ("Kuhn",    kuhnDifficultyHW.toList.sorted.map(_._2))
+    )
+
+  writeHtml()
+}
+
+/** object representing a *grouped* bar graph of students'
+ *  reported difficulty relative to instructor's HW
+ */
+object InstructorTimeSpentBarGraph extends GroupedBarGraphFactory with App {
+  import CourseraData.users
+
+  /* file name to output to */
+  val name = "instructor-vs-time-spent.html"
+
+  /* width and height of final plot. Overrides default of 960 x 480 */
+  override val width = 550
+  override val height = 240
+
+  /* the captions represent the legend (the colors for each bar).
+   for the moment, it must begin with a string called "Key". this will be removed shortly */
+  val captions = List("Key","1-4 hours", "4-6 hours", "6-8 hours", "8-10 hours", "10+ hours")
+
+  /* label for the y-axis */
+  def label = "Percentage"
+
+  val oderskyTimeSpent: Map[String, Long] =
+    users.groupBy(user => user.odersky.timeSpent)
+        .map(kv => (kv._1, (kv._2.length.toDouble/users.length*100).round))
+
+  val meijerTimeSpent: Map[String, Long] =
+    users.groupBy(user => user.meijer.timeSpent)
+        .map(kv => (kv._1, (kv._2.length.toDouble/users.length*100).round))
+
+  val kuhnTimeSpent: Map[String, Long] =
+    users.groupBy(user => user.kuhn.timeSpent)
+        .map(kv => (kv._1, (kv._2.length.toDouble/users.length*100).round))
+
+ /* this effectively returns a List[(String, Int)]
+  * it represents the data that goes into your bar graph
+  * where the String is the label on the x-axis, and the
+  * Int is the value for each bar */
+  def data =
+    List(
+      ("Odersky", oderskyTimeSpent.toList.sorted.map(_._2)),
+      ("Meijer",  meijerTimeSpent.toList.sorted.map(_._2)),
+      ("Kuhn",    kuhnTimeSpent.toList.sorted.map(_._2))
     )
 
   writeHtml()
@@ -559,7 +605,8 @@ object ProgfunStats extends App {
     EditorGroupedBarGraph,
     WorthItBarGraph,
     InstructorDifficultyBarGraph,
-    InstructorHWDifficultyBarGraph
+    InstructorHWDifficultyBarGraph,
+    InstructorTimeSpentBarGraph
     ).foreach { graph =>
       graph.main(Array())
       println("generated " + graph.name)
