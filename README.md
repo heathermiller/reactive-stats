@@ -8,7 +8,7 @@ Pull requests are also welcome.
 
 ## The Survey
 
-The survey was emailed to the ~40,000 students enrolled in the **Fall 2013** [_Principles of Reactive Programming_](https://www.coursera.org/course/reactive) MOOC on [Coursera](http://coursera.org). Out of those students, 4,400 responded.
+The survey was emailed to the ~40,000 students enrolled in the **Fall 2013** [_Principles of Reactive Programming_](https://www.coursera.org/course/reactive) MOOC on [Coursera](http://coursera.org). Out of those students, 4,460 responded.
 
 The following questions (with their available choices) were on the survey:
 
